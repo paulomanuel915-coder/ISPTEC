@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ISPETC | Exame de Acesso 2026/27</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #FFFFFF;
+            color: #121212;
+        }
+
+        /* =========================
+           CABEÇALHO
+        ========================== */
+
+        header {
+            background: #F3C74E;
+            color: #000000;
+            padding: 18px 20px;
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 55px;
+            height: 55px;
+            background: #252B36;
+            color: #F3C74E;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .header-text h1 {
+            font-size: 20px;
+        }
+
+        .header-text p {
+            font-size: 13px;
+            margin-top: 4px;
+            opacity: 0.85;
+        }
+
+        /* =========================
+           MENU
+        ========================== */
+
+        nav {
+            background: #252B36;
+        }
+
+        nav ul {
+            max-width: 1000px;
+            margin: auto;
+            list-style: none;
+            display: flex;
+        }
+
+        nav li {
+            padding: 13px 18px;
+            color: #FFFFFF;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        nav li:hover {
+            background: #181C23;
+            color: #F3C74E;
+        }
+
+        /* =========================
+           CONTEÚDO
+        ========================== */
+
+        main {
+            max-width: 900px;
+            margin: 35px auto;
+            padding: 0 18px;
+        }
+
+        .breadcrumb {
+            font-size: 13px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: #FFFFFF;
+            border-radius: 8px;
+            padding: 28px;
+
+            /* Caixa principal */
+            border: 1px solid #181C23;
+            border-right: 6px solid #181C23;
+
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            background: #252B36;
+            color: #FFFFFF;
+
+            margin: -28px -28px 20px -28px;
+            padding: 18px 28px;
+
+            border-radius: 7px 7px 0 0;
+        }
+
+        .description {
+            color: #555555;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           FORMULÁRIO
+        ========================== */
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 7px;
+            color: #121212;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+
+            background: #FFFFFF;
+            color: #121212;
+
+            border: 1px solid #252B36;
+            border-radius: 5px;
+
+            font-size: 15px;
+            margin-bottom: 18px;
+
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #F3C74E;
+            box-shadow: 0 0 0 2px rgba(243, 199, 78, 0.25);
+        }
+
+        input::placeholder {
+            color: #777777;
+        }
+
+        /* =========================
+           BOTÃO CONSULTAR
+        ========================== */
+
+        button {
+            width: 100%;
+            padding: 14px;
+
+            background: #F3C74E;
+            border: 2px solid #181C23;
+
+            color: #000000;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            border-radius: 5px;
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #F4C444;
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* =========================
+           RESULTADO
+        ========================== */
+
+        #resultado {
+            display: none;
+            margin-top: 25px;
+        }
+
+        .resultado-box {
+            border: 1px solid #181C23;
+            border-radius: 7px;
+            overflow: hidden;
+        }
+
+        .resultado-header {
+            background: #252B36;
+            color: #FFFFFF;
+
+            padding: 15px;
+
+            border-bottom: 4px solid #F3C74E;
+
+            font-weight: bold;
+        }
+
+        .dados {
+            padding: 18px;
+        }
+
+        .linha {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 11px 0;
+
+            border-bottom: 1px solid #EEEEEE;
+
+            gap: 20px;
+        }
+
+        .linha:last-child {
+            border-bottom: none;
+        }
+
+        .linha span:first-child {
+            color: #666666;
+        }
+
+        .linha strong {
+            color: #121212;
+        }
+
+        /* =========================
+           STATUS
+        ========================== */
+
+        .status {
+            text-align: center;
+
+            padding: 25px 15px;
+
+            background: #FFFFFF;
+
+            border-top: 1px solid #EEEEEE;
+        }
+
+        .status h3 {
+            color: #000000;
+
+            font-size: 28px;
+
+            margin-bottom: 10px;
+
+            background: #F3C74E;
+
+            display: inline-block;
+
+            padding: 8px 18px;
+
+            border-radius: 5px;
+
+            border: 2px solid #181C23;
+        }
+
+        .status p {
+            color: #555555;
+            font-size: 14px;
+        }
+
+        /* =========================
+           PEGADINHA
+        ========================== */
+
+        #pegadinha {
+            display: none;
+
+            text-align: center;
+
+            padding: 30px 15px;
+
+            background: #252B36;
+
+            color: #FFFFFF;
+
+            border-top: 5px solid #F3C74E;
+        }
+
+        #pegadinha .emoji {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        #pegadinha h2 {
+            color: #F3C74E;
+
+            font-size: 32px;
+
+            margin-bottom: 15px;
+        }
+
+        #pegadinha p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        #pegadinha strong {
+            color: #F3C74E;
+        }
+
+        /* =========================
+           BOTÃO VOLTAR
+        ========================== */
+
+        .voltar {
+            margin-top: 20px;
+
+            background: #F3C74E;
+            color: #000000;
+
+            border: 2px solid #181C23;
+        }
+
+        .voltar:hover {
+            background: #F4C444;
+        }
+
+        /* =========================
+           AVISO
+        ========================== */
+
+        .aviso {
+            margin-top: 20px;
+
+            background: #F3C74E;
+
+            border-left: 5px solid #181C23;
+
+            padding: 13px;
+
+            font-size: 13px;
+
+            color: #121212;
+
+            border-radius: 3px;
+        }
+
+        /* =========================
+           RODAPÉ
+        ========================== */
+
+        footer {
+            margin-top: 50px;
+
+            background: #252B36;
+
+            color: #FFFFFF;
+
+            text-align: center;
+
+            padding: 25px 15px;
+
+            font-size: 12px;
+
+            border-top: 5px solid #F3C74E;
+        }
+
+        footer p:first-child {
+            font-weight: bold;
+        }
+
+        /* =========================
+           RESPONSIVO
+        ========================== */
+
+        @media (max-width: 600px) {
+
+            .header-content {
+                align-items: flex-start;
+            }
+
+            .header-text h1 {
+                font-size: 17px;
+            }
+
+            nav ul {
+                overflow-x: auto;
+            }
+
+            nav li {
+                white-space: nowrap;
+            }
+
+            .card {
+                padding: 20px;
+                border-right-width: 4px;
+            }
+
+            .card h2 {
+                margin: -20px -20px 20px -20px;
+                padding: 16px 20px;
+                font-size: 20px;
+            }
+
+            .linha {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .status h3 {
+                font-size: 23px;
+            }
+
+            #pegadinha h2 {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-content">
+
+        <div class="logo">
+            ISPETC
+        </div>
+
+        <div class="header-text">
+            <h1>
+                Instituto Superior Politécnico de Tecnologias e Ciências
+            </h1>
+
+            <p>
+                Portal de Exame de Acesso
+            </p>
+        </div>
+
+    </div>
+</header>
+
+
+<nav>
+    <ul>
+        <li>Início</li>
+        <li>Exame de Acesso</li>
+        <li>Resultados</li>
+        <li>Informações</li>
+    </ul>
+</nav>
+
+
+<main>
+
+    <div class="breadcrumb">
+        Início › Exame de Acesso › Resultados 2026/27
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            Resultados do Exame de Acesso 2026/27
+        </h2>
+
+
+        <p class="description">
+            Consulte o resultado do Exame de Acesso referente ao
+            ano académico 2026/2027.
+        </p>
+
+
+        <!-- NOME -->
+
+        <label for="nome">
+            Nome do candidato
+        </label>
+
+        <input
+            type="text"
+            id="nome"
+            placeholder="Digite o seu nome"
+        >
+
+
+        <!-- NÚMERO -->
+
+        <label for="numero">
+            Número de inscrição
+        </label>
+
+        <input
+            type="text"
+            id="numero"
+            placeholder="Ex.: 2026/00000"
+        >
+
+
+        <!-- BOTÃO -->
+
+        <button onclick="consultarResultado()">
+            CONSULTAR RESULTADO
+        </button>
+
+
+        <!-- AVISO -->
+
+        <div class="aviso">
+            <strong>Atenção:</strong>
+            Tenha consigo os dados utilizados durante a inscrição
+            para consultar o seu resultado.
+        </div>
+
+
+        <!-- RESULTADO -->
+
+        <div id="resultado">
+
+            <div class="resultado-box">
+
+                <div class="resultado-header">
+                    Resultado do candidato
+                </div>
+
+
+                <div class="dados">
+
+                    <div class="linha">
+                        <span>Nome:</span>
+
+                        <strong id="nomeResultado"></strong>
+                    </div>
+
+
+                    <div class="linha">
+                        <span>N.º de inscrição:</span>
+
+                        <strong id="numeroResultado"></strong>
+                    </div>
+
+
+                    <div class="linha">
+                        <span>Ano académico:</span>
+
+                        <strong>
+                            2026/2027
+                        </strong>
+                    </div>
+
+
+                    <div class="linha">
+                        <span>Estado:</span>
+
+                        <strong>
+                            Não admitido
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="status">
+
+                    <h3>
+                        REPROVASTE 😂
+                    </h3>
+
+                    <p>
+                        Infelizmente, o candidato não obteve
+                        classificação suficiente para admissão.
+                    </p>
+
+                </div>
+
+
+                <!-- PEGADINHA -->
+
+                <div id="pegadinha">
+
+                    <div class="emoji">
+                        😂🤣😭
+                    </div>
+
+                    <h2>
+                        CALMA! 😂
+                    </h2>
+
+                    <p>
+                        Foste apanhado na pegadinha! 🤣
+                        <br><br>
+
+                        Este site é apenas uma brincadeira.
+                        <br>
+
+                        <strong>
+                            Não são resultados oficiais.
+                        </strong>
+                    </p>
+
+
+                    <button
+                        class="voltar"
+                        onclick="location.reload()"
+                    >
+                        Voltar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 ISPETC — Portal de Exame de Acesso
+    </p>
+
+    <p style="margin-top:7px;">
+        Exame de Acesso 2026/2027
+    </p>
+
+</footer>
+
+
+<script>
+
+function consultarResultado() {
+
+    const nome =
+        document.getElementById("nome").value.trim();
+
+    const numero =
+        document.getElementById("numero").value.trim();
+
+
+    if (nome === "" || numero === "") {
+
+        alert(
+            "Por favor, preencha o nome e o número de inscrição."
+        );
+
+        return;
+    }
+
+
+    document.getElementById("nomeResultado").textContent =
+        nome;
+
+    document.getElementById("numeroResultado").textContent =
+        numero;
+
+
+    document.getElementById("resultado").style.display =
+        "block";
+
+
+    window.scrollTo({
+
+        top:
+            document.getElementById("resultado").offsetTop,
+
+        behavior: "smooth"
+
+    });
+
+
+    setTimeout(() => {
+
+        const mensagem =
+            document.getElementById("pegadinha");
+
+
+        mensagem.style.display =
+            "block";
+
+
+        mensagem.scrollIntoView({
+
+            behavior: "smooth"
+
+        });
+
+    }, 2500);
+
+}
+
+</script>
+
+</body>
+</html>
